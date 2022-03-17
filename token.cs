@@ -22,7 +22,7 @@ namespace LoxInterpreter {
     PRINT, RETURN, THIS, TRUE, VAR, WHILE,
 
     EOF
-    }
+    };
 
     class Token {
         TokenType type;
@@ -31,7 +31,7 @@ namespace LoxInterpreter {
         int line; 
 
         // Token: constructor for tokens
-        Token(TokenType type, String lexeme, Object literal, int line) {
+        Token(TokenType type, string lexeme, object literal, int line) {
             this.type = type;
             this.lexeme = lexeme;
             this.literal = literal;

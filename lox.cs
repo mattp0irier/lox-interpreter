@@ -31,7 +31,7 @@ namespace LoxInterpreter {
 
         // runFile: run file passed as argument
         void runFile(string fileName) {
-            string content = File.ReadAllText("filename");
+            string content = File.ReadAllText(fileName);
             run(content);
         }
 
