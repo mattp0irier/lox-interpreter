@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\pebz3\\Box Sync\\Semester 6\\CS 403\\extraProject\\learning\\learning\\trmpLox.csproj",
+      "projectUniqueName": "C:\\Users\\pebz3\\Box Sync\\Semester 6\\CS 403\\lox-interpreter\\trmpLox\\trmpLox\\trmpLox.csproj",
       "projectName": "trmpLox",
-      "projectPath": "C:\\Users\\pebz3\\Box Sync\\Semester 6\\CS 403\\extraProject\\learning\\learning\\trmpLox.csproj",
+      "projectPath": "C:\\Users\\pebz3\\Box Sync\\Semester 6\\CS 403\\lox-interpreter\\trmpLox\\trmpLox\\trmpLox.csproj",
       "packagesPath": "C:\\Users\\pebz3\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\pebz3\\Box Sync\\Semester 6\\CS 403\\extraProject\\learning\\learning\\obj\\",
+      "outputPath": "C:\\Users\\pebz3\\Box Sync\\Semester 6\\CS 403\\lox-interpreter\\trmpLox\\trmpLox\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\pebz3\\AppData\\Roaming\\NuGet\\NuGet.Config",

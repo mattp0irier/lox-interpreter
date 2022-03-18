@@ -15,35 +15,34 @@ namespace LoxInterpreter
             }
             else if (args.Length == 1)
             {
-                runFile(args[0]);
+                RunFile(args[0]);
             }
             else
             {
-                runPrompt();
+                RunPrompt();
             }
         }
 
-        static void runPrompt()
+        static void RunPrompt()
         {
-            string curLine;
+            string curLine = "initial value";
             while (true)
             {
                 Console.Write("> ");
                 curLine = Console.ReadLine();
                 if (curLine.Length == 0) break;
-                run(curLine);
+                Run(curLine);
             }
         }
 
-        static void runFile(string filename)
+        static void RunFile(string filename)
         {
             string input = File.ReadAllText(filename);
-            run(input);
+            Run(input);
         }
 
-        static void run(string line)
+        static void Run(string line)
         {
-            Console.WriteLine("Okay, I'll run the line");
             Scanner scanner = new Scanner(line);
             List<Token> tokens = scanner.scanTokens();
 

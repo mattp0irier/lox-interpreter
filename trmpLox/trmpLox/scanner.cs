@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Collections;
 using System.Collections.Generic;
 public class Scanner
 {
@@ -8,6 +9,22 @@ public class Scanner
     int start = 0;
     int cur = 0;
     int line = 1;
+    readonly Hashtable keywords = new Hashtable()
+    {
+        {"and", TokenType.AND},
+        {"else", TokenType.ELSE},
+        {"false", TokenType.FALSE},
+        {"for", TokenType.FOR},
+        {"if", TokenType.IF},
+        {"nil", TokenType.NIL},
+        {"or", TokenType.OR},
+        {"print", TokenType.PRINT},
+        {"return", TokenType.RETURN},
+        {"this", TokenType.THIS},
+        {"true", TokenType.TRUE},
+        {"var", TokenType.VAR},
+        {"while", TokenType.WHILE}
+    };
 
     public Scanner(String source)
     {
@@ -28,7 +45,7 @@ public class Scanner
 
     void scanToken()
     {
-        char c = advance();
+        char c = Advance();
         switch (c)
         {
             //SINGLE-CHARACTER OPERATIONS
@@ -77,7 +94,7 @@ public class Scanner
                 if (match('/'))
                 {
                     // don't read the rest of the line if it's a comment
-                    while (peek() != '\n' && !done()) advance();
+                    while (Peek() != '\n' && !done()) Advance();
                 }
                 else addToken(TokenType.SLASH);
                 break;
@@ -89,31 +106,64 @@ public class Scanner
                 line++;
                 break;
             case '"':
-                scanString();
+                ScanString();
                 break;
-
             default:
                 //FIXME: add number literals and keywords
-                Console.WriteLine("Unexpected Chracter"); break;
+                if (Char.IsDigit(c))
+                    ScanNumber();
+                else if (Char.IsLetter(c) || c == '_')
+                    ScanIdentifier();
+                else
+                    Console.WriteLine("Unexpected Chracter"); break;
 
         }
     }
 
-    void scanString()
+    void ScanIdentifier()
     {
-        while (peek() != '"' && !done())
+        while (Char.IsLetterOrDigit(Peek()) || Peek() == '_') Advance();
+
+        string name = source[start..cur];
+        TokenType type;
+#pragma warning disable CS8605 // Unboxing a possibly null value.
+        if (keywords.ContainsKey(name)) type = (TokenType)keywords[name];
+#pragma warning restore CS8605 // Unboxing a possibly null value.
+        else type = TokenType.IDENTIFIER;
+
+        addToken(type);
+    }
+
+    void ScanNumber()
+    {
+        while (Char.IsDigit(Peek())) Advance();
+
+        //Is there a decimal point?
+        if (Peek() == '.' && Char.IsDigit(PeekNext()))
         {
-            if (peek() == '\n') line++;
-            advance();
+            Advance();
+
+            while (Char.IsDigit(Peek())) Advance();
+        }
+
+        addToken(TokenType.NUMBER, Double.Parse(source[start..cur], System.Globalization.NumberStyles.AllowDecimalPoint));
+    }
+
+    void ScanString()
+    {
+        while (Peek() != '"' && !done())
+        {
+            if (Peek() == '\n') line++;
+            Advance();
         }
         if (done())
         {
             Console.WriteLine("Unterminated String");
             return;
         }
-        advance();
+        Advance();
 
-        string value = source.Substring(start + 1, cur - start - 2);
+        string value = source[(start+1)..(cur-1)];
         addToken(TokenType.STRING, value);
     }
 
@@ -125,13 +175,18 @@ public class Scanner
         return true;
     }
 
-    char peek()
+    char Peek()
     {
         if (done()) return '\0';
         return source[cur];
     }
 
-    char advance()
+    char PeekNext()
+    {
+        return source[cur + 1];
+    }
+
+    char Advance()
     {
         return source[cur++];
     }
@@ -143,7 +198,7 @@ public class Scanner
 
     void addToken(TokenType type, object literal)
     {
-        string text = source.Substring(start, cur - start);
+        string text = source[start..cur];
         tokens.Add(new Token(type, text, literal, line));
     }
 
