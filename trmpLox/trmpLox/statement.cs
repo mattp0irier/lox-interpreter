@@ -18,6 +18,11 @@ namespace trmpLox
 
         public abstract T accept<T>(Visitor<T> visitor);
 
+        public override string ToString()
+        {
+            return this.GetType().Name;
+        }
+
         public class Block : Statement
         {
             readonly List<Statement> statements;

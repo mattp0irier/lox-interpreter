@@ -23,6 +23,11 @@ namespace trmpLox
             T visitVariableExpr(Variable expr);
         }
         public abstract T Accept<T>(Visitor<T> visitor);
+
+        public override string ToString()
+        {
+            return this.GetType().Name;
+        }
     }
 
     public class Assign : Expression

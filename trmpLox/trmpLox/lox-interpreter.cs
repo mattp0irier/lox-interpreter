@@ -56,6 +56,9 @@ namespace trmpLox
                 //Console.WriteLine("there is a token here");
                 Console.WriteLine(cur.toString());
             }
+
+            Console.WriteLine();
+            Console.WriteLine(expr);
         }
 
     }
