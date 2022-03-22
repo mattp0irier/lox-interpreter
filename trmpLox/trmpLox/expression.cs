@@ -23,7 +23,7 @@ namespace trmpLox
             T visitVariableExpr(Variable expr);
         }
 
-        class Assign : Expression
+        public class Assign : Expression
         {
             Assign(Token name, Expression value)
             {
@@ -40,7 +40,7 @@ namespace trmpLox
             readonly Expression value;
         }
 
-        class Binary : Expression
+        public class Binary : Expression
         {
             Binary(Expression left, Token op, Expression right)
             {
@@ -58,7 +58,7 @@ namespace trmpLox
             readonly Token op;
             readonly Expression right;
         }
-        class Call : Expression
+        public class Call : Expression
         {
             Call(Expression callee, Token paren, List<Expression> args)
             {
@@ -76,7 +76,7 @@ namespace trmpLox
             readonly Token paren;
             readonly List<Expression> args;
         }
-        class Get : Expression
+        public class Get : Expression
         {
             Get(Expression obj, Token name)
             {
@@ -92,7 +92,7 @@ namespace trmpLox
             readonly Expression obj;
             readonly Token name;
         }
-        class Grouping : Expression
+        public class Grouping : Expression
         {
             Grouping(Expression expr)
             {
@@ -106,7 +106,7 @@ namespace trmpLox
 
             readonly Expression expr;
         }
-        class Literal : Expression
+        public class Literal : Expression
         {
             Literal(object value)
             {
@@ -120,7 +120,7 @@ namespace trmpLox
 
             readonly object value;
         }
-        class Logical : Expression
+        public class Logical : Expression
         {
             Logical(Expression left, Token op, Expression right)
             {
@@ -138,7 +138,7 @@ namespace trmpLox
             readonly Token op;
             readonly Expression right;
         }
-        class Set : Expression
+        public class Set : Expression
         {
             Set(Expression obj, Token name, Expression value)
             {
@@ -156,7 +156,7 @@ namespace trmpLox
             readonly Token name;
             readonly Expression value;
         }
-        class This : Expression
+        public class This : Expression
         {
             This(Token keyword)
             {
@@ -170,7 +170,7 @@ namespace trmpLox
 
             readonly Token keyword;
         }
-        class Unary : Expression
+        public class Unary : Expression
         {
             Unary(Token op, Expression right)
             {
@@ -186,7 +186,7 @@ namespace trmpLox
             readonly Token op;
             readonly Expression right;
         }
-        class Variable : Expression
+        public class Variable : Expression
         {
             Variable(Token name)
             {
