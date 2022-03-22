@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\trmpLox",
+    "\\trmpLox\\trmpLox"
   ],
-  "SelectedNode": "\\helloWorld.exe",
+  "SelectedNode": "\\trmpLox\\trmpLox.sln",
   "PreviewInSolutionExplorer": false
 }
