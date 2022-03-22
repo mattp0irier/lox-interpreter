@@ -2,7 +2,7 @@
 using System.IO;
 using System.Collections.Generic;
 
-namespace LoxInterpreter
+namespace trmpLox
 {
     class TrMpLox
     {
@@ -43,8 +43,13 @@ namespace LoxInterpreter
 
         static void Run(string line)
         {
-            Scanner scanner = new Scanner(line);
+            Scanner scanner = new(line);
             List<Token> tokens = scanner.scanTokens();
+            Parser parser = new(tokens);
+            Expression expr = parser.Parse();
+
+            Console.WriteLine("Didn't Die");
+            
 
             foreach (Token cur in tokens)
             {
