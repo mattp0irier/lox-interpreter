@@ -25,29 +25,31 @@ namespace trmpLox
 
         static void RunPrompt()
         {
+            Interpreter interpreter = new Interpreter();
             string curLine = "initial value";
             while (true)
             {
                 Console.Write("> ");
                 curLine = Console.ReadLine();
                 if (curLine.Length == 0) break;
-                Run(curLine);
+                Run(curLine, interpreter);
             }
         }
 
         static void RunFile(string filename)
         {
             string input = File.ReadAllText(filename);
-            Run(input);
+            Run(input, null);
         }
 
-        static void Run(string line)
+        static void Run(string line, Interpreter? interpreter)
         {
             Scanner scanner = new(line);
             List<Token> tokens = scanner.scanTokens();
             Parser parser = new(tokens);
-            Expression expr = parser.Parse();
-            Interpreter interpreter = new Interpreter();
+            List<Statement> stmts = parser.Parse();
+            if (interpreter == null) interpreter = new Interpreter();
+
 
             Console.WriteLine("Didn't Die");
             
@@ -58,12 +60,12 @@ namespace trmpLox
                 Console.WriteLine(cur.toString());
             }
 
-            Console.WriteLine();
-            Console.WriteLine(expr);
-            Console.WriteLine();
+           // Console.WriteLine();
+           // Console.WriteLine(expr);
+           // Console.WriteLine();
 
 
-            interpreter.interpret(expr);
+            interpreter.interpret(stmts);
         }
 
     }

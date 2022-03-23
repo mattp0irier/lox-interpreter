@@ -2,18 +2,18 @@
 
 namespace trmpLox
 {
-	abstract class Statement
+	public abstract class Statement
 	{
         public interface Visitor<T>
         {
-            T visitBlockStatement(Block stmt);
-            T visitExpressionStatement(Expression stmt);
-            T visitFunctionStatement(Function stmt);
-            T visitIfStatement(If stmt);
-            T visitPrintStatement(Print stmt);
-            T visitReturnStatement(Return stmt);
-            T visitVarStatement(Var stmt);
-            T visitWhileStatement(While stmt);
+            T visitBlockStatement(BlockStmt stmt);
+            T visitExpressionStatement(ExpressionStmt stmt);
+            T visitFunctionStatement(FunctionStmt stmt);
+            T visitIfStatement(IfStmt stmt);
+            T visitPrintStatement(PrintStmt stmt);
+            T visitReturnStatement(ReturnStmt stmt);
+            T visitVarStatement(VarStmt stmt);
+            T visitWhileStatement(WhileStmt stmt);
         }
 
         public abstract T accept<T>(Visitor<T> visitor);
@@ -23,138 +23,138 @@ namespace trmpLox
             return this.GetType().Name;
         }
 
-        public class Block : Statement
+    }
+    public class BlockStmt : Statement
+    {
+        public readonly List<Statement> statements;
+
+        public BlockStmt(List<Statement> statements)
         {
-            readonly List<Statement> statements;
-
-            Block (List<Statement> statements)
-            {
-                this.statements = statements;
-            }
-
-            public override T accept<T>(Visitor<T> visitor)
-            {
-                return visitor.visitBlockStatement(this);
-            }
+            this.statements = statements;
         }
 
-        public class Expression : Statement
+        public override T accept<T>(Visitor<T> visitor)
         {
-            readonly Expression expression;
+            return visitor.visitBlockStatement(this);
+        }
+    }
 
-            Expression(Expression expression)
-            {
-                this.expression = expression;
-            }
+    public class ExpressionStmt : Statement
+    {
+        public readonly Expression expression;
 
-            public override T accept<T>(Visitor<T> visitor)
-            {
-                return visitor.visitExpressionStatement(this);
-            }
+        public ExpressionStmt(Expression expression)
+        {
+            this.expression = expression;
         }
 
-        public class Function : Statement
+        public override T accept<T>(Visitor<T> visitor)
         {
-            readonly Token name;
-            readonly List<Token> parameters;
-            readonly List<Statement> body;
+            return visitor.visitExpressionStatement(this);
+        }
+    }
 
-            Function(Token name, List<Token> parameters, List<Statement> body)
-            {
-                this.name = name;
-                this.parameters = parameters;
-                this.body = body;
-            }
+    public class FunctionStmt : Statement
+    {
+        readonly Token name;
+        readonly List<Token> parameters;
+        readonly List<Statement> body;
 
-            public override T accept<T>(Visitor<T> visitor)
-            {
-                return visitor.visitFunctionStatement(this);
-            }
+        public FunctionStmt(Token name, List<Token> parameters, List<Statement> body)
+        {
+            this.name = name;
+            this.parameters = parameters;
+            this.body = body;
         }
 
-        public class If : Statement
+        public override T accept<T>(Visitor<T> visitor)
         {
-            readonly Expression condition;
-            readonly Statement trueBranch;
-            readonly Statement falseBranch;
+            return visitor.visitFunctionStatement(this);
+        }
+    }
 
-            If(Expression condition, Statement trueBranch, Statement falseBranch)
-            {
-                this.condition = condition;
-                this.trueBranch = trueBranch;
-                this.falseBranch = falseBranch;
-            }
+    public class IfStmt : Statement
+    {
+        readonly Expression condition;
+        readonly Statement trueBranch;
+        readonly Statement falseBranch;
 
-            public override T accept<T>(Visitor<T> visitor)
-            {
-                return visitor.visitIfStatement(this);
-            }
+        public IfStmt(Expression condition, Statement trueBranch, Statement falseBranch)
+        {
+            this.condition = condition;
+            this.trueBranch = trueBranch;
+            this.falseBranch = falseBranch;
         }
 
-        public class Print : Statement
+        public override T accept<T>(Visitor<T> visitor)
         {
-            readonly Expression expression;
+            return visitor.visitIfStatement(this);
+        }
+    }
 
-            Print(Expression expression)
-            {
-                this.expression = expression;
-            }
+    public class PrintStmt : Statement
+    {
+        public readonly Expression expression;
 
-            public override T accept<T>(Visitor<T> visitor)
-            {
-                return visitor.visitPrintStatement(this);
-            }
+        public PrintStmt(Expression expression)
+        {
+            this.expression = expression;
         }
 
-        public class Return : Statement
+        public override T accept<T>(Visitor<T> visitor)
         {
-            readonly Token keyword;
-            readonly Expression value;
+            return visitor.visitPrintStatement(this);
+        }
+    }
 
-            Return(Token keyword, Expression value)
-            {
-                this.keyword = keyword;
-                this.value = value;
-            }
+    public class ReturnStmt : Statement
+    {
+        readonly Token keyword;
+        readonly Expression value;
 
-            public override T accept<T>(Visitor<T> visitor)
-            {
-                return visitor.visitReturnStatement(this);
-            }
+        public ReturnStmt(Token keyword, Expression value)
+        {
+            this.keyword = keyword;
+            this.value = value;
         }
 
-        public class Var : Statement
+        public override T accept<T>(Visitor<T> visitor)
         {
-            readonly Token name;
-            readonly Expression initializer;
+            return visitor.visitReturnStatement(this);
+        }
+    }
 
-            Var(Token name, Expression initializer)
-            {
-                this.name = name;
-                this.initializer = initializer;
-            }
+    public class VarStmt : Statement
+    {
+        public readonly Token name;
+        public readonly Expression? initializer;
 
-            public override T accept<T>(Visitor<T> visitor)
-            {
-                return visitor.visitVarStatement(this);
-            }
+        public VarStmt(Token name, Expression? initializer)
+        {
+            this.name = name;
+            this.initializer = initializer;
         }
 
-        public class While : Statement
+        public override T accept<T>(Visitor<T> visitor)
         {
-            readonly Expression condition;
-            readonly Statement body;
+            return visitor.visitVarStatement(this);
+        }
+    }
 
-            While(Expression condition, Statement body)
-            {
-                this.condition = condition;
-                this.body = body;
-            }
+    public class WhileStmt : Statement
+    {
+        readonly Expression condition;
+        readonly Statement body;
 
-            public override T accept<T>(Visitor<T> visitor)
-            {
-                return visitor.visitWhileStatement(this);
-            }
+        public WhileStmt(Expression condition, Statement body)
+        {
+            this.condition = condition;
+            this.body = body;
+        }
+
+        public override T accept<T>(Visitor<T> visitor)
+        {
+            return visitor.visitWhileStatement(this);
         }
     }
 }

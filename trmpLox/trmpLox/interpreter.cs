@@ -1,8 +1,9 @@
 ﻿using System;
 namespace trmpLox
 {
-	public class Interpreter : Expression.Visitor<Object>
+	public class Interpreter : Expression.Visitor<Object>, Statement.Visitor<object?>
 	{
+        private Environment environment = new();
 		public Interpreter()
 		{
 		}
@@ -10,6 +11,70 @@ namespace trmpLox
         private object evaluate(Expression expr)
         {
             return expr.Accept(this);
+        }
+
+        private object? Execute(Statement stmt)
+        {
+            return stmt.accept(this);
+        }
+
+        public object? visitExpressionStatement(ExpressionStmt stmt)
+        {
+            evaluate(stmt.expression);
+            return null;
+        }
+
+        public object? visitPrintStatement(PrintStmt stmt)
+        {
+            object value = evaluate(stmt.expression);
+            Console.WriteLine(stringify(value));
+            return null;
+        }
+
+        public object? visitBlockStatement(BlockStmt stmt)
+        {
+            Console.WriteLine("Not yet implemented");
+            return null;
+        }
+
+        public object? visitFunctionStatement(FunctionStmt stmt)
+        {
+            Console.WriteLine("Not yet implemented");
+            return null;
+        }
+
+        public object? visitIfStatement(IfStmt stmt)
+        {
+            Console.WriteLine("Not yet implemented");
+            return null;
+        }
+
+        public object? visitReturnStatement(ReturnStmt stmt)
+        {
+            Console.WriteLine("Not yet implemented");
+            return null;
+        }
+
+        public object? visitVarStatement(VarStmt stmt)
+        {
+            object? value = null;
+            if (stmt.initializer != null)
+            {
+                value = evaluate(stmt.initializer);
+            }
+
+            environment.Define(stmt.name.lexeme, value);
+            foreach (KeyValuePair<string, object> kvp in environment.values)
+            {
+                Console.WriteLine("Key: {0}, Value: {1}", kvp.Key, kvp.Value);
+            }
+            return null;
+        }
+
+        public object? visitWhileStatement(WhileStmt stmt)
+        {
+            Console.WriteLine("Not yet implemented");
+            return null;
         }
 
         private bool isTruthy(object obj)
@@ -127,7 +192,7 @@ namespace trmpLox
 
         public object visitVariableExpr(Variable expr)
         {
-            throw new NotImplementedException();
+            return environment.Get(expr.name);
         }
 
         private String stringify(Object obj)
@@ -147,10 +212,14 @@ namespace trmpLox
             return obj.ToString();
         }
 
-        public void interpret(Expression expression)
+        public void interpret(List<Statement> statements)
         {
-            object value = evaluate(expression);
-            Console.WriteLine(stringify(value));
+            foreach (Statement statement in statements)
+            {
+                Execute(statement);
+            }
+            //object value = evaluate(expression);
+            //Console.WriteLine(stringify(value));
         }
     }
 }

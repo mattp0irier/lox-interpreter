@@ -29,7 +29,7 @@ namespace trmpLox
     public class Token
     {
         TokenType type;
-        string lexeme;
+        public string lexeme;
         object literal;
         int line;
 

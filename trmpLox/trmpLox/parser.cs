@@ -16,14 +16,60 @@ namespace trmpLox
             this.tokens = tokens;
         }
 
-        public Expression Parse()
+        public List<Statement> Parse()
         {
-            return Expr();
+            List<Statement> statements = new();
+            while (!AtEnd())
+            {
+                statements.Add(Declaration());
+            }
+            return statements;
         }
 
         Expression Expr()
         {
             return Equality();
+        }
+
+        Statement Declaration()
+        {
+            if (Match(TokenType.VAR)) return VarDeclaration();
+            return Stmt();
+        }
+
+        Statement VarDeclaration()
+        {
+            Token name = Consume(TokenType.IDENTIFIER, "Expect variable name.");
+
+            Expression? initializer = null;
+            if (Match(TokenType.EQUAL))
+            {
+                initializer = Expr();
+            }
+
+            Consume(TokenType.SEMICOLON, "Expect ';' after variable declaration.");
+            return new VarStmt(name, initializer);
+        }
+
+        Statement Stmt()
+        {
+            if (Match(TokenType.PRINT)) return PrintStmt();
+
+            return ExprStmt();
+        }
+
+        Statement PrintStmt()
+        {
+            Expression expr = Expr();
+            Consume(TokenType.SEMICOLON, "Expect ; after value.");
+            return new PrintStmt(expr);
+        }
+
+        Statement ExprStmt()
+        {
+            Expression expr = Expr();
+            Consume(TokenType.SEMICOLON, "Expect ; after value.");
+            return new ExpressionStmt(expr);
         }
 
         Expression Equality()
@@ -103,6 +149,11 @@ namespace trmpLox
             if (Match(TokenType.NUMBER, TokenType.STRING))
             {
                 return new Literal(Previous().GetLiteral());
+            }
+
+            if (Match(TokenType.IDENTIFIER))
+            {
+                return new Variable(Previous());
             }
 
             if (Match(TokenType.LEFT_PAREN))
