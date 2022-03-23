@@ -61,9 +61,9 @@ namespace trmpLox
             return visitor.visitBinaryExpr(this);
         }
 
-        readonly Expression left;
-        readonly Token op;
-        readonly Expression right;
+        public readonly Expression left;
+        public readonly Token op;
+        public readonly Expression right;
     }
     public class Call : Expression
     {
@@ -79,9 +79,9 @@ namespace trmpLox
             return visitor.visitCallExpr(this);
         }
 
-        readonly Expression callee;
-        readonly Token paren;
-        readonly List<Expression> args;
+        public readonly Expression callee;
+        public readonly Token paren;
+        public readonly List<Expression> args;
     }
     public class Get : Expression
     {
@@ -96,8 +96,8 @@ namespace trmpLox
             return visitor.visitGetExpr(this);
         }
 
-        readonly Expression obj;
-        readonly Token name;
+        public readonly Expression obj;
+        public readonly Token name;
     }
     public class Grouping : Expression
     {
@@ -111,7 +111,7 @@ namespace trmpLox
             return visitor.visitGroupingExpr(this);
         }
 
-        readonly Expression expr;
+        public readonly Expression expr;
     }
     public class Literal : Expression
     {
@@ -125,7 +125,7 @@ namespace trmpLox
             return visitor.visitLiteralExpr(this);
         }
 
-        readonly object? value;
+        public readonly object? value;
     }
     public class Logical : Expression
     {
@@ -141,9 +141,9 @@ namespace trmpLox
             return visitor.visitLogicalExpr(this);
         }
 
-        readonly Expression left;
-        readonly Token op;
-        readonly Expression right;
+        public readonly Expression left;
+        public readonly Token op;
+        public readonly Expression right;
     }
     public class Set : Expression
     {
@@ -159,9 +159,9 @@ namespace trmpLox
             return visitor.visitSetExpr(this);
         }
 
-        readonly Expression obj;
-        readonly Token name;
-        readonly Expression value;
+        public readonly Expression obj;
+        public readonly Token name;
+        public readonly Expression value;
     }
     public class This : Expression
     {
@@ -175,7 +175,7 @@ namespace trmpLox
             return visitor.visitThisExpr(this);
         }
 
-        readonly Token keyword;
+        public readonly Token keyword;
     }
     public class Unary : Expression
     {
@@ -190,8 +190,8 @@ namespace trmpLox
             return visitor.visitUnaryExpr(this);
         }
 
-        readonly Token op;
-        readonly Expression right;
+        public readonly Token op;
+        public readonly Expression right;
     }
     public class Variable : Expression
     {
@@ -205,7 +205,7 @@ namespace trmpLox
             return visitor.visitVariableExpr(this);
         }
 
-        readonly Token name;
+        public readonly Token name;
     }
 
 }

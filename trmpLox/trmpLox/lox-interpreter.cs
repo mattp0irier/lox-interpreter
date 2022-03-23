@@ -47,6 +47,7 @@ namespace trmpLox
             List<Token> tokens = scanner.scanTokens();
             Parser parser = new(tokens);
             Expression expr = parser.Parse();
+            Interpreter interpreter = new Interpreter();
 
             Console.WriteLine("Didn't Die");
             
@@ -59,6 +60,10 @@ namespace trmpLox
 
             Console.WriteLine();
             Console.WriteLine(expr);
+            Console.WriteLine();
+
+
+            interpreter.interpret(expr);
         }
 
     }

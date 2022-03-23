@@ -29,8 +29,8 @@ namespace trmpLox
     public class Token
     {
         TokenType type;
-        String lexeme;
-        Object literal;
+        string lexeme;
+        object literal;
         int line;
 
         // Token: constructor for tokens
