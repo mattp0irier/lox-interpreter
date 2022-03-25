@@ -28,7 +28,7 @@ namespace trmpLox
 
         Expression Expr()
         {
-            return Equality();
+            return Assignment();
         }
 
         Statement Declaration()
@@ -54,6 +54,7 @@ namespace trmpLox
         Statement Stmt()
         {
             if (Match(TokenType.PRINT)) return PrintStmt();
+            if (Match(TokenType.LEFT_BRACE)) return new BlockStmt(Block());
 
             return ExprStmt();
         }
@@ -164,6 +165,37 @@ namespace trmpLox
             }
             Console.WriteLine("Found nothing in Primary()");
             return new Literal(null);
+        }
+
+        private Expression Assignment()
+        {
+            Expression expression = Equality();
+
+            if (Match(TokenType.EQUAL))
+            {
+                Token equals = Previous();
+                Expression value = Assignment();
+
+                if (expression is Variable) {
+                    Token name = ((Variable)expression).name;
+                    return new Assign(name, value);
+                }
+            }
+
+            return expression;
+        }
+
+        private List<Statement> Block()
+        {
+            List<Statement> statements = new List<Statement>();
+
+            while (!Check(TokenType.RIGHT_BRACE) && !AtEnd())
+            {
+                statements.Add(Declaration());
+            }
+
+            Consume(TokenType.RIGHT_BRACE, "Block not closed with }");
+            return statements;
         }
 
         Boolean Match(params TokenType[] types)

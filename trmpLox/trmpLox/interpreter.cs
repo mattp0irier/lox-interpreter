@@ -33,7 +33,7 @@ namespace trmpLox
 
         public object? visitBlockStatement(BlockStmt stmt)
         {
-            Console.WriteLine("Not yet implemented");
+            ExecuteBlock(stmt.statements, new Environment(environment));
             return null;
         }
 
@@ -77,6 +77,24 @@ namespace trmpLox
             return null;
         }
 
+        public void ExecuteBlock(List<Statement> statements, Environment environment)
+        {
+            Environment previous = this.environment;
+            try
+            {
+                this.environment = environment;
+
+                foreach (Statement statement in statements)
+                {
+                    Execute(statement);
+                }
+            }
+            finally
+            {
+                this.environment = previous;
+            }
+        }
+
         private bool isTruthy(object obj)
         {
             if (obj == null) return false;
@@ -96,7 +114,9 @@ namespace trmpLox
 
         public object visitAssignExpr(Assign expr)
         {
-            throw new NotImplementedException();
+            Object value = evaluate(expr.value);
+            environment.Assign(expr.name, value);
+            return value;
         }
 
         public object visitBinaryExpr(Binary expr)

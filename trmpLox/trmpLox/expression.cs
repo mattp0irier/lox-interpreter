@@ -32,7 +32,10 @@ namespace trmpLox
 
     public class Assign : Expression
     {
-        Assign(Token name, Expression value)
+        public readonly Token name;
+        public readonly Expression value;
+
+        public Assign(Token name, Expression value)
         {
             this.name = name;
             this.value = value;
@@ -42,9 +45,6 @@ namespace trmpLox
         {
             return visitor.visitAssignExpr(this);
         }
-
-        readonly Token name;
-        readonly Expression value;
     }
 
     public class Binary : Expression
