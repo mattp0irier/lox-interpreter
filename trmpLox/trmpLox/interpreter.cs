@@ -45,7 +45,14 @@ namespace trmpLox
 
         public object? visitIfStatement(IfStmt stmt)
         {
-            Console.WriteLine("Not yet implemented");
+            if (isTruthy(evaluate(stmt.condition)))
+            {
+                Execute(stmt.trueBranch);
+            }
+            else if (stmt.falseBranch != null)
+            {
+                Execute(stmt.falseBranch);
+            }
             return null;
         }
 
@@ -73,7 +80,10 @@ namespace trmpLox
 
         public object? visitWhileStatement(WhileStmt stmt)
         {
-            Console.WriteLine("Not yet implemented");
+            while (isTruthy(evaluate(stmt.condition)))
+            {
+                Execute(stmt.body);
+            }
             return null;
         }
 
@@ -183,7 +193,18 @@ namespace trmpLox
 
         public object visitLogicalExpr(Logical expr)
         {
-            throw new NotImplementedException();
+            object left = evaluate(expr.left);
+
+            if (expr.op.type == TokenType.OR)
+            {
+                if (isTruthy(left)) return left;
+            }
+            else
+            {
+                if (!isTruthy(left)) return left;
+            }
+
+            return evaluate(expr.right);
         }
 
         public object visitSetExpr(Set expr)

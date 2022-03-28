@@ -53,10 +53,92 @@ namespace trmpLox
 
         Statement Stmt()
         {
+            if (Match(TokenType.FOR)) return forStmt();
+            if (Match(TokenType.IF)) return ifStmt();
             if (Match(TokenType.PRINT)) return PrintStmt();
+            if (Match(TokenType.WHILE)) return WhileStmt();
             if (Match(TokenType.LEFT_BRACE)) return new BlockStmt(Block());
 
             return ExprStmt();
+        }
+
+        Statement forStmt()
+        {
+            Consume(TokenType.LEFT_PAREN, "Expect '(' after 'for'.");
+            Statement? initializer;
+            if (Match(TokenType.SEMICOLON))
+            {
+                initializer = null;
+            }
+            else if (Match(TokenType.VAR))
+            {
+                initializer = VarDeclaration();
+            }
+            else
+            {
+                initializer = ExprStmt();
+            }
+
+            Expression? condition = null;
+            if (!Check(TokenType.SEMICOLON))
+            {
+                condition = Expr();
+            }
+            Consume(TokenType.SEMICOLON, "Expect ';' after loop condition.");
+
+            Expression? increment = null;
+            if (!Check(TokenType.SEMICOLON))
+            {
+                increment = Expr();
+            }
+            Consume(TokenType.RIGHT_PAREN, "Expect ')' after for clauses.");
+
+            Statement body = Stmt();
+
+            if (increment != null)
+            {
+                body = new BlockStmt(new List<Statement>{ body, new ExpressionStmt(increment) });
+            }
+
+            if (condition == null)
+            {
+                condition = new Literal(true);
+            }
+            body = new WhileStmt(condition, body);
+
+            if (initializer != null)
+            {
+                body = new BlockStmt(new List<Statement> { initializer, body });
+            }
+
+
+            return body;
+        }
+
+        Statement WhileStmt()
+        {
+            Consume(TokenType.LEFT_PAREN, "Expect  '(' after 'while'.");
+            Expression condition = Expr();
+            Consume(TokenType.RIGHT_PAREN, "Expect ')' after condition.");
+            Statement body = Stmt();
+
+            return new WhileStmt(condition, body);
+        }
+
+        Statement ifStmt()
+        {
+            Consume(TokenType.LEFT_PAREN, "Expect '(' after 'if'.");
+            Expression condition = Expr();
+            Consume(TokenType.RIGHT_PAREN, "Expect ')' after if condition.");
+
+            Statement thenBranch = Stmt();
+            Statement? elseBranch = null;
+            if (Match(TokenType.ELSE))
+            {
+                elseBranch = Stmt();
+            }
+
+            return new IfStmt(condition, thenBranch, elseBranch);
         }
 
         Statement PrintStmt()
@@ -169,7 +251,7 @@ namespace trmpLox
 
         private Expression Assignment()
         {
-            Expression expression = Equality();
+            Expression expression = Or();
 
             if (Match(TokenType.EQUAL))
             {
@@ -183,6 +265,34 @@ namespace trmpLox
             }
 
             return expression;
+        }
+
+        private Expression Or()
+        {
+            Expression expr = And();
+
+            while (Match(TokenType.OR))
+            {
+                Token op = Previous();
+                Expression right = And();
+                expr = new Logical(expr, op, right);
+            }
+
+            return expr;
+        }
+
+        private Expression And()
+        {
+            Expression expr = Equality();
+
+            while (Match(TokenType.AND))
+            {
+                Token op = Previous();
+                Expression right = Equality();
+                expr = new Logical(expr, op, right);
+            }
+
+            return expr;
         }
 
         private List<Statement> Block()

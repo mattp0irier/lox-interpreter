@@ -75,11 +75,11 @@ namespace trmpLox
 
     public class IfStmt : Statement
     {
-        readonly Expression condition;
-        readonly Statement trueBranch;
-        readonly Statement falseBranch;
+        public readonly Expression condition;
+        public readonly Statement trueBranch;
+        public readonly Statement? falseBranch;
 
-        public IfStmt(Expression condition, Statement trueBranch, Statement falseBranch)
+        public IfStmt(Expression condition, Statement trueBranch, Statement? falseBranch)
         {
             this.condition = condition;
             this.trueBranch = trueBranch;
@@ -143,8 +143,8 @@ namespace trmpLox
 
     public class WhileStmt : Statement
     {
-        readonly Expression condition;
-        readonly Statement body;
+        public readonly Expression condition;
+        public readonly Statement body;
 
         public WhileStmt(Expression condition, Statement body)
         {

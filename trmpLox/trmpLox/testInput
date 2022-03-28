@@ -1,3 +1,4 @@
-"ligma balls" ()+!= == 431-20357 230.352 432109 fortnite for "please and thank you" while white <= 
-
-=====3
+for (var i = 0; i < 10; i = i + 1) {
+	var num = i * i;
+	print num;
+}
