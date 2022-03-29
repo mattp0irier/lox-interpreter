@@ -14,7 +14,7 @@ namespace trmpLox
             public string toString() { return "<native fn>"; }
         };
 
-        readonly Environment globals = new();
+        public readonly Environment globals = new();
         private Environment environment;
 
         public Interpreter()
@@ -62,13 +62,14 @@ namespace trmpLox
 
         public object? visitFunctionStatement(FunctionStmt stmt)
         {
-            Console.WriteLine("Not yet implemented");
+            LoxFunction function = new(stmt);
+            environment.Define(stmt.name.lexeme, function);
             return null;
         }
 
         public object? visitIfStatement(IfStmt stmt)
         {
-            if (isTruthy(evaluate(stmt.condition)))
+            if (isTruthy((stmt.condition)))
             {
                 Execute(stmt.trueBranch);
             }
@@ -81,8 +82,10 @@ namespace trmpLox
 
         public object? visitReturnStatement(ReturnStmt stmt)
         {
-            Console.WriteLine("Not yet implemented");
-            return null;
+            object? value = null;
+            if (stmt.value != null) value = evaluate(stmt.value);
+
+            throw new Return(value);
         }
 
         public object? visitVarStatement(VarStmt stmt)

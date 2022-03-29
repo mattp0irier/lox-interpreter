@@ -33,6 +33,7 @@ namespace trmpLox
 
         Statement Declaration()
         {
+            if (Match(TokenType.FUN)) return Function("function");
             if (Match(TokenType.VAR)) return VarDeclaration();
             return Stmt();
         }
@@ -56,6 +57,7 @@ namespace trmpLox
             if (Match(TokenType.FOR)) return forStmt();
             if (Match(TokenType.IF)) return ifStmt();
             if (Match(TokenType.PRINT)) return PrintStmt();
+            if (Match(TokenType.RETURN)) return ReturnStmt();
             if (Match(TokenType.WHILE)) return WhileStmt();
             if (Match(TokenType.LEFT_BRACE)) return new BlockStmt(Block());
 
@@ -148,11 +150,46 @@ namespace trmpLox
             return new PrintStmt(expr);
         }
 
+        Statement ReturnStmt()
+        {
+            Token keyword = Previous();
+            Expression? value = null;
+            if (!Check(TokenType.SEMICOLON))
+            {
+                value = Expr();
+            }
+
+            Consume(TokenType.SEMICOLON, "Expect ';' after return value.");
+            return new ReturnStmt(keyword, value);
+        }
+
         Statement ExprStmt()
         {
             Expression expr = Expr();
             Consume(TokenType.SEMICOLON, "Expect ; after value.");
             return new ExpressionStmt(expr);
+        }
+        FunctionStmt Function(string kind)
+        {
+            Token name = Consume(TokenType.IDENTIFIER, "Expect " + kind + " name.");
+            Consume(TokenType.LEFT_PAREN, "Expect '(' after " + kind + " name.");
+            List<Token> parameters = new();
+            if (!Check(TokenType.RIGHT_PAREN))
+            {
+                do
+                {
+                    if (parameters.Count >= 255)
+                    {
+                        Console.WriteLine("Can't have more than 255 parameters.");
+                    }
+                    parameters.Add(Consume(TokenType.IDENTIFIER, "Expect parameter name."));
+                } while (Match(TokenType.COMMA));
+            }
+            Consume(TokenType.RIGHT_PAREN, "Expect ')' after parameters.");
+
+            Consume(TokenType.LEFT_BRACE, "Expect '{' before " + kind + " body.");
+            List<Statement> body = Block();
+            return new FunctionStmt(name, parameters, body);
         }
 
         Expression Equality()

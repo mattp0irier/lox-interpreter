@@ -56,9 +56,9 @@ namespace trmpLox
 
     public class FunctionStmt : Statement
     {
-        readonly Token name;
-        readonly List<Token> parameters;
-        readonly List<Statement> body;
+        public readonly Token name;
+        public readonly List<Token> parameters;
+        public readonly List<Statement> body;
 
         public FunctionStmt(Token name, List<Token> parameters, List<Statement> body)
         {
@@ -109,10 +109,10 @@ namespace trmpLox
 
     public class ReturnStmt : Statement
     {
-        readonly Token keyword;
-        readonly Expression value;
+        public readonly Token keyword;
+        public readonly Expression? value;
 
-        public ReturnStmt(Token keyword, Expression value)
+        public ReturnStmt(Token keyword, Expression? value)
         {
             this.keyword = keyword;
             this.value = value;
