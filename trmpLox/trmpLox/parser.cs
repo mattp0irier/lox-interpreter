@@ -220,7 +220,48 @@ namespace trmpLox
                 return new Unary(op, right);
             }
 
-            return Primary();
+            return Call();
+        }
+
+        private Expression Call()
+        {
+            Expression expr = Primary();
+
+            while (true)
+            {
+                if (Match(TokenType.LEFT_PAREN))
+                {
+                    expr = FinishCall(expr);
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            return expr;
+        }
+
+        private Expression FinishCall(Expression callee)
+        {
+            List<Expression> args = new List<Expression>();
+            if (!Check(TokenType.RIGHT_PAREN))
+            {
+                if (args.Count >= 255)
+                {
+                    Console.WriteLine("Can't have more than 255 arguments.");
+                    Peek();
+                }
+                args.Add(Expr());
+                while (Match(TokenType.COMMA))
+                {
+                    args.Add(Expr());
+                }
+            }
+
+            Token paren = Consume(TokenType.RIGHT_PAREN, "Missing ')' after args.");
+
+            return new Call(callee, paren, args);
         }
 
         Expression Primary()

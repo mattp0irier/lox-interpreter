@@ -3,9 +3,20 @@ namespace trmpLox
 {
 	public class Interpreter : Expression.Visitor<Object>, Statement.Visitor<object?>
 	{
-        private Environment environment = new();
-		public Interpreter()
+        readonly Environment globals = new();
+        private Environment environment;
+
+        public Interpreter()
 		{
+            environment = globals;
+            //globals.Define("clock", new LoxCallable() {
+            //  public override int Arity() { return 0; }
+            //  public override Object Call(Interpreter interpreter, List<Object> arguments)
+            //        {
+            //            return (double)System.currentTimeMillis() / 1000.0;
+            //        }
+            //  public override string ToString() { return "<native fn>"; }
+            //});
 		}
 
         private object evaluate(Expression expr)
@@ -173,7 +184,24 @@ namespace trmpLox
 
         public object visitCallExpr(Call expr)
         {
-            throw new NotImplementedException();
+            Object callee = evaluate(expr.callee);
+
+            List<Object> arguments = new List<Object>();
+            foreach (Expression argument in expr.args)
+            {
+                arguments.Add(evaluate(argument));
+            }
+
+            if (!(callee is LoxCallable)) {
+                Console.WriteLine("Can only call functions and classes.");
+            }
+
+            LoxCallable function = (LoxCallable)callee;
+            if (arguments.Count != function.Arity())
+            {
+                Console.WriteLine("Expected " + function.Arity() + " arguments but got " + arguments.Count + ".");
+            }
+            return function.Call(this, arguments);
         }
 
         public object visitGetExpr(Get expr)
