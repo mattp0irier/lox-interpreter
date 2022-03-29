@@ -21,14 +21,6 @@ namespace trmpLox
 		{
             environment = globals;
             globals.Define("clock", new ClockCallable());
-            //globals.Define("clock", new LoxCallable() {
-            //  public override int Arity() { return 0; }
-            //  public override Object Call(Interpreter interpreter, List<Object> arguments)
-            //        {
-            //            return (double)System.currentTimeMillis() / 1000.0;
-            //        }
-            //  public override string ToString() { return "<native fn>"; }
-            //});
 		}
 
         private object evaluate(Expression expr)
@@ -69,12 +61,14 @@ namespace trmpLox
 
         public object? visitIfStatement(IfStmt stmt)
         {
-            if (isTruthy((stmt.condition)))
+            if (isTruthy(stmt.condition))
             {
+                Console.WriteLine("TRUE BRANCH");
                 Execute(stmt.trueBranch);
             }
             else if (stmt.falseBranch != null)
             {
+                Console.WriteLine("FALSE BRANCH");
                 Execute(stmt.falseBranch);
             }
             return null;
@@ -134,7 +128,12 @@ namespace trmpLox
         private bool isTruthy(object obj)
         {
             if (obj == null) return false;
-            if (obj is bool) return (bool)obj;
+            if (obj is bool)
+            {
+                Console.WriteLine("BOOLEAN FOUND");
+                return (bool)obj;
+            }
+            Console.WriteLine("nothing FOUND");
             return true;
         }
 

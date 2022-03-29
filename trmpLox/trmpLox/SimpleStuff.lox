@@ -1,0 +1,23 @@
+﻿print "Testing basic things!";
+
+print "MATH OPS";
+print ("2 + 3 = " + (2 + 3) + " (expected 5)");
+print ("4 - 3 = " + (4 - 3) + " (expected 1)");
+print ("4 * 3 = " + (4 * 3) + " (expected 12)");
+print ("6 / 3 = " + (6 / 3) + " (expected 2)");
+print ("4 % 3 = " + (4 % 3) + " (expected 1)");
+
+print "negatives"
+print ("-2 + -3 = " + (-2 + -3) + " (expected -5)");
+print ("4 - -3 = " + (4 - -3) + " (expected 7)");
+print ("4 * -3 = " + (4 * -3) + " (expected -12)");
+print ("-6 / -3 = " + (-6 / -3) + " (expected 2)");
+print ("4 % -3 = " + (4 % -3) + " (expected -1)");
+
+print "others"
+print ("4 + a = " + (4 + a) + " (expected error)");
+print ("4 / 0 = " + (4 / 0) + " (expected error)");
+print ("0 / 4 = " + (0 / 4) + " (expected 0)");
+print ("(0 - (27 % 7)) * (2 + (100 / 25)) = " + ((0 - (27 % 7)) * (2 + (100 / 25))) + " (expected 36)");
+
+print "LOGICAL OPS";
