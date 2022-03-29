@@ -3,12 +3,24 @@ namespace trmpLox
 {
 	public class Interpreter : Expression.Visitor<Object>, Statement.Visitor<object?>
 	{
+        public class ClockCallable : LoxCallable
+        {
+            public int Arity() { return 0; }
+            public object Call(Interpreter interpreter, List<object> arguments)
+            {
+                return (double)DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
+            }
+
+            public string toString() { return "<native fn>"; }
+        };
+
         readonly Environment globals = new();
         private Environment environment;
 
         public Interpreter()
 		{
             environment = globals;
+            globals.Define("clock", new ClockCallable());
             //globals.Define("clock", new LoxCallable() {
             //  public override int Arity() { return 0; }
             //  public override Object Call(Interpreter interpreter, List<Object> arguments)
