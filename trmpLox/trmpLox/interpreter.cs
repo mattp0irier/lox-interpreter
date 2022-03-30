@@ -287,7 +287,8 @@ namespace trmpLox
 
         private object? LookUpVariable(Token name, Expression expr)
         {
-            int? distance = locals[expr];
+            int? distance = null;
+            if (locals.ContainsKey(expr)) distance = locals[expr];
             if (distance != null)
             {
                 return environment.GetAt(distance, name.lexeme);
