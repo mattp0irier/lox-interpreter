@@ -6,6 +6,7 @@ namespace trmpLox
 	{
 		readonly Interpreter interpreter;
 		readonly Stack<Dictionary<string, bool>> scopes = new Stack<Dictionary<string, bool>>();
+		FunctionType currentFunction = FunctionType.NONE;
 
 		public Resolver(Interpreter interpreter)
 		{
@@ -54,7 +55,7 @@ namespace trmpLox
 			Declare(statement.name);
 			Define(statement.name);
 
-			ResolveFunction(statement);
+			ResolveFunction(statement, FunctionType.FUNCTION);
 			return null;
 		}
 
@@ -81,6 +82,12 @@ namespace trmpLox
 
 		public object? visitReturnStatement(ReturnStmt stmt)
 		{
+			if (currentFunction == FunctionType.NONE)
+            {
+				Console.WriteLine("Can't return from top-level code.");
+				return null;
+            }
+
 			if (stmt.value != null)
 			{
 				Resolve(stmt.value);
@@ -152,8 +159,11 @@ namespace trmpLox
 			throw new NotImplementedException();
 		}
 
-		void ResolveFunction(FunctionStmt fun)
+		void ResolveFunction(FunctionStmt fun, FunctionType type)
 		{
+			FunctionType enclosingFunction = currentFunction;
+			currentFunction = type;
+
 			BeginScope();
 			foreach (Token parameter in fun.parameters)
 			{
@@ -162,6 +172,7 @@ namespace trmpLox
 			}
 			Resolve(fun.body);
 			EndScope();
+			currentFunction = enclosingFunction;
 		}
 
 		private void ResolveLocal(Expression expr, Token name)
@@ -181,7 +192,9 @@ namespace trmpLox
 			if (scopes.Count == 0) return;
 
 			Dictionary<string, bool> scope = scopes.Peek();
-			scope.Add(token.lexeme, false);
+
+			if(scope.ContainsKey(token.lexeme)) { Console.WriteLine("Already a variable with this name in the scope."); }
+			else scope.Add(token.lexeme, false);
 		}
 
 		private void Define(Token token)
@@ -218,5 +231,11 @@ namespace trmpLox
 			scopes.Pop();
 		}
 	}
+
+	enum FunctionType
+    {
+		NONE,
+		FUNCTION
+    };
 }
 
