@@ -57,5 +57,26 @@ namespace trmpLox
                 return;
             }
         }
+
+        public object? GetAt(int? distance, string name)
+        {
+            return Ancestor(distance).values[name];
+        }
+
+        public void AssignAt(int? distance, Token name, object value)
+        {
+            Ancestor(distance).values.Add(name.lexeme, value);
+        }
+
+        Environment Ancestor(int? distance)
+        {
+            Environment? environment = this;
+            for (int i = 0; i < distance; i++)
+            {
+                environment = environment.enclosing;
+            }
+
+            return environment;
+        }
     }
 }

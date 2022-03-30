@@ -1,7 +1,7 @@
 ﻿using System;
 namespace trmpLox
 {
-	public class Interpreter : Expression.Visitor<Object>, Statement.Visitor<object?>
+	public class Interpreter : Expression.Visitor<object>, Statement.Visitor<object?>
 	{
         public class ClockCallable : LoxCallable
         {
@@ -15,6 +15,7 @@ namespace trmpLox
         };
 
         public readonly Environment globals = new();
+        private readonly Dictionary<Expression, int> locals = new Dictionary<Expression, int>();
         private Environment environment;
 
         public Interpreter()
@@ -146,7 +147,17 @@ namespace trmpLox
         public object visitAssignExpr(Assign expr)
         {
             Object value = evaluate(expr.value);
-            environment.Assign(expr.name, value);
+
+            int? distance = locals[expr];
+            if (distance != null)
+            {
+                environment.AssignAt(distance, expr.name, value);
+            }
+            else
+            {
+                globals.Assign(expr.name, value);
+            }
+            
             return value;
         }
 
@@ -271,16 +282,29 @@ namespace trmpLox
 
         public object visitVariableExpr(Variable expr)
         {
-            return environment.Get(expr.name);
+            return LookUpVariable(expr.name, expr);
         }
 
-        private String stringify(Object obj)
+        private object? LookUpVariable(Token name, Expression expr)
+        {
+            int? distance = locals[expr];
+            if (distance != null)
+            {
+                return environment.GetAt(distance, name.lexeme);
+            }
+            else
+            {
+                return globals.Get(name);
+            }
+        }
+
+        private string stringify(object obj)
         {
             if (obj == null)
                 return "nil";
 
             if (obj is double) {
-                string text = obj.ToString();
+                string? text = obj.ToString();
                 if (text.EndsWith(".0"))
                 {
                     text = text.Substring(0, text.Length - 2);
@@ -289,6 +313,11 @@ namespace trmpLox
             }
 
             return obj.ToString();
+        }
+
+        public void Resolve(Expression expr, int depth)
+        {
+            locals.Add(expr, depth);
         }
 
         public void interpret(List<Statement> statements)

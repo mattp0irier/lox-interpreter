@@ -9,15 +9,17 @@ namespace trmpLox
     internal class LoxFunction : LoxCallable
     {
         readonly FunctionStmt declaration;
+        readonly Environment closure;
 
-        public LoxFunction(FunctionStmt declaration)
+        public LoxFunction(FunctionStmt declaration, Environment closure)
         {
+            this.closure = closure;
             this.declaration = declaration;
         }
 
         public object Call(Interpreter interpreter, List<object> arguments)
         {
-            Environment env = new(interpreter.globals);
+            Environment env = new Environment(closure);
             for (int i = 0; i < declaration.parameters.Count; i++)
             {
                 env.Define(declaration.parameters[i].lexeme, arguments[i]);

@@ -51,19 +51,20 @@ namespace trmpLox
             if (interpreter == null) interpreter = new Interpreter();
 
 
-            Console.WriteLine("Didn't Die");
-            
+            //Console.WriteLine("Didn't Die");
 
-            foreach (Token cur in tokens)
-            {
-                //Console.WriteLine("there is a token here");
-                Console.WriteLine(cur.toString());
-            }
 
-           // Console.WriteLine();
-           // Console.WriteLine(expr);
-           // Console.WriteLine();
+            //foreach (Token cur in tokens)
+            //{
+            //Console.WriteLine("there is a token here");
+            //Console.WriteLine(cur.toString());
+            //}
 
+            // Console.WriteLine();
+            // Console.WriteLine(expr);
+            // Console.WriteLine();
+            Resolver resolver = new Resolver(interpreter);
+            resolver.Resolve(stmts);
 
             interpreter.interpret(stmts);
         }
