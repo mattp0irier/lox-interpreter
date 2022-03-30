@@ -294,7 +294,7 @@ namespace trmpLox
             }
             else
             {
-                return globals.Get(name);
+                return globals.Get(name.lexeme);
             }
         }
 
