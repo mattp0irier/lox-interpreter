@@ -61,14 +61,12 @@ namespace trmpLox
 
         public object? visitIfStatement(IfStmt stmt)
         {
-            if (isTruthy(stmt.condition))
+            if (isTruthy(evaluate(stmt.condition)))
             {
-                Console.WriteLine("TRUE BRANCH");
                 Execute(stmt.trueBranch);
             }
             else if (stmt.falseBranch != null)
             {
-                Console.WriteLine("FALSE BRANCH");
                 Execute(stmt.falseBranch);
             }
             return null;
@@ -130,10 +128,8 @@ namespace trmpLox
             if (obj == null) return false;
             if (obj is bool)
             {
-                Console.WriteLine("BOOLEAN FOUND");
                 return (bool)obj;
             }
-            Console.WriteLine("nothing FOUND");
             return true;
         }
 
