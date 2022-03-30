@@ -54,7 +54,7 @@ namespace trmpLox
 
         public object? visitFunctionStatement(FunctionStmt stmt)
         {
-            LoxFunction function = new(stmt);
+            LoxFunction function = new(stmt, environment);
             environment.Define(stmt.name.lexeme, function);
             return null;
         }
