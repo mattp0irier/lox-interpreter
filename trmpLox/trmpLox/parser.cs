@@ -306,7 +306,6 @@ namespace trmpLox
             }
 
             Token paren = Consume(TokenType.RIGHT_PAREN, "Missing ')' after args.");
-
             return new Call(callee, paren, args);
         }
 

@@ -1,4 +1,13 @@
-fun countDown(a) { if (a == 0) {return 0;} else {print a; return dountDown(a-1); }}
+fun countDown(a) {
+    print a;
+    if (a == 0) {
+        return 0;
+    }
+    else {
+        print a;
+        return countDown(a - 1);
+    }
+}
 
 countDown(5);
 countDown(10);

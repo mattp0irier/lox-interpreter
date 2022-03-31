@@ -212,9 +212,9 @@ namespace trmpLox
 
         public object visitCallExpr(Call expr)
         {
-            Object callee = evaluate(expr.callee);
+            object callee = evaluate(expr.callee);
 
-            List<Object> arguments = new List<Object>();
+            List<object> arguments = new List<object>();
             foreach (Expression argument in expr.args)
             {
                 arguments.Add(evaluate(argument));

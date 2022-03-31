@@ -168,6 +168,7 @@ namespace trmpLox
 			foreach (Token parameter in fun.parameters)
 			{
 				Declare(parameter);
+				Console.WriteLine("declared " + parameter.lexeme);
 				Define(parameter);
 			}
 			Resolve(fun.body);
@@ -177,11 +178,11 @@ namespace trmpLox
 
 		private void ResolveLocal(Expression expr, Token name)
 		{
-			for (int i = scopes.Count - 1; i >= 0; i--)
-			{
-				if (scopes.ElementAt(i).ContainsKey(name.lexeme))
+			for (int i = 0; i < scopes.ToArray().Length; i++)
+			{ 
+				if (scopes.ToArray()[i].ContainsKey(name.lexeme))
 				{
-					interpreter.Resolve(expr, scopes.Count - 1 - i);
+					interpreter.Resolve(expr, i);
 					return;
 				}
 			}

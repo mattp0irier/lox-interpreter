@@ -60,12 +60,22 @@ namespace trmpLox
 
         public object? GetAt(int? distance, string name)
         {
-            return Ancestor(distance).values[name];
+            if (Ancestor(distance).values.ContainsKey(name))
+            {
+                return Ancestor(distance).values[name];
+            }
+            return null;
         }
 
         public void AssignAt(int? distance, Token name, object value)
         {
-            Ancestor(distance).values.Add(name.lexeme, value);
+            if (Ancestor(distance).values.ContainsKey(name.lexeme)) {
+                Ancestor(distance).values[name.lexeme] = value;
+            }
+            else
+            {
+                Ancestor(distance).values.Add(name.lexeme, value);
+            }
         }
 
         Environment Ancestor(int? distance)
