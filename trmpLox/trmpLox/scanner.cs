@@ -113,13 +113,12 @@ namespace trmpLox
                     ScanString();
                     break;
                 default:
-                    //FIXME: add number literals and keywords
                     if (Char.IsDigit(c))
                         ScanNumber();
                     else if (Char.IsLetter(c) || c == '_')
                         ScanIdentifier();
                     else
-                        Console.WriteLine("Unexpected Chracter"); break;
+                        TrMpLox.Error(line, "Unexpected Character."); break;
 
             }
         }
@@ -162,7 +161,7 @@ namespace trmpLox
             }
             if (done())
             {
-                Console.WriteLine("Unterminated String");
+                TrMpLox.Error(line, "Unterminated String");
                 return;
             }
             Advance();

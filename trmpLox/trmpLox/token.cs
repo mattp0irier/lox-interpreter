@@ -31,7 +31,7 @@ namespace trmpLox
         public TokenType type;
         public string lexeme;
         object literal;
-        int line;
+        public int line;
 
         // Token: constructor for tokens
         public Token(TokenType type, string lexeme, object literal, int line)

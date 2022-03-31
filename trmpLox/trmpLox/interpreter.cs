@@ -146,11 +146,11 @@ namespace trmpLox
 
         public object visitAssignExpr(Assign expr)
         {
-            Object value = evaluate(expr.value);
+            object value = evaluate(expr.value);
 
-            int? distance = locals[expr];
-            if (distance != null)
+            if (locals.ContainsKey(expr))
             {
+                int? distance = locals[expr];
                 environment.AssignAt(distance, expr.name, value);
             }
             else
@@ -169,10 +169,13 @@ namespace trmpLox
             switch (expr.op.GetType())
             {
                 case TokenType.MINUS:
+                    CheckNumOperands(expr.op, left, right);
                     return (double)left - (double)right;
                 case TokenType.SLASH:
+                    CheckNumOperands(expr.op, left, right);
                     return (double)left / (double)right;
                 case TokenType.STAR:
+                    CheckNumOperands(expr.op, left, right);
                     return (double)left * (double)right;
                 case TokenType.PLUS:
                     if (left is double && right is double)
@@ -184,14 +187,18 @@ namespace trmpLox
                     {
                         return (string)left + (string)right;
                     }
-                    break;
+                    throw new runtimeError(expr.op, "Operands must be two numbers or two strings.");
                 case TokenType.GREATER:
+                    CheckNumOperands(expr.op, left, right);
                     return (double)left > (double)right;
                 case TokenType.GREATER_EQUAL:
+                    CheckNumOperands(expr.op, left, right);
                     return (double)left >= (double)right;
                 case TokenType.LESS:
+                    CheckNumOperands(expr.op, left, right);
                     return (double)left < (double)right;
                 case TokenType.LESS_EQUAL:
+                    CheckNumOperands(expr.op, left, right);
                     return (double)left <= (double)right;
                 case TokenType.BANG_EQUAL:
                     return !isEqual(left, right);
@@ -272,12 +279,25 @@ namespace trmpLox
             switch (expr.op.GetType())
             {
                 case TokenType.MINUS:
+                    CheckNumOperand(expr.op, right);
                     return -(double)right;
                 case TokenType.BANG:
                     return !isTruthy(right);
                 default:
                     return null;
             }
+        }
+
+        void CheckNumOperand(Token op, object operand)
+        {
+            if (operand is double) return;
+            throw new runtimeError(op, "Operand must be a number.");
+        }
+
+        void CheckNumOperands(Token op, object operand1, object operand2)
+        {
+            if (operand1 is double && operand2 is double) return;
+            throw new runtimeError(op, "Operands must be numbers.");
         }
 
         public object visitVariableExpr(Variable expr)
@@ -323,12 +343,17 @@ namespace trmpLox
 
         public void interpret(List<Statement> statements)
         {
-            foreach (Statement statement in statements)
+            try
             {
-                Execute(statement);
+                foreach (Statement statement in statements)
+                {
+                    Execute(statement);
+                }
             }
-            //object value = evaluate(expression);
-            //Console.WriteLine(stringify(value));
+            catch (runtimeError error)
+            {
+                TrMpLox.RuntimeError(error);
+            }
         }
     }
 }

@@ -34,9 +34,9 @@ namespace trmpLox
 
 		public object? visitVariableExpr(Variable expr)
 		{
-			if (scopes.Count != 0 && scopes.Peek()[expr.name.lexeme] == false)
+			if (scopes.Count != 0 && scopes.Peek().ContainsKey(expr.name.lexeme) && scopes.Peek()[expr.name.lexeme] == false)
 			{
-				Console.WriteLine("Can't read local variable in its own initializer.");
+				TrMpLox.Error(expr.name, "Can't read local variable in its own initializer.");
 			}
 
 			ResolveLocal(expr, expr.name);
@@ -84,7 +84,7 @@ namespace trmpLox
 		{
 			if (currentFunction == FunctionType.NONE)
             {
-				Console.WriteLine("Can't return from top-level code.");
+				TrMpLox.Error(stmt.keyword, "Can't return from top-level code.");
 				return null;
             }
 
@@ -193,14 +193,17 @@ namespace trmpLox
 
 			Dictionary<string, bool> scope = scopes.Peek();
 
-			if(scope.ContainsKey(token.lexeme)) { Console.WriteLine("Already a variable with this name in the scope."); }
+			if(scope.ContainsKey(token.lexeme)) { 
+				TrMpLox.Error(token, "Already a variable with this name in the scope."); 
+			}
 			else scope.Add(token.lexeme, false);
 		}
 
 		private void Define(Token token)
 		{
 			if (scopes.Count == 0) return;
-			scopes.Peek().Add(token.lexeme, true);
+			if (scopes.Peek().ContainsKey(token.lexeme)) scopes.Peek()[token.lexeme] = true;
+			else scopes.Peek().Add(token.lexeme, true);
 		}
 
 		public void Resolve(List<Statement> statements)

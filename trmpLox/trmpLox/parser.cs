@@ -8,6 +8,7 @@ namespace trmpLox
 {
     internal class Parser
     {
+        private class ParseError : Exception { }
         readonly List<Token> tokens;
         int cur = 0;
 
@@ -33,9 +34,17 @@ namespace trmpLox
 
         Statement Declaration()
         {
-            if (Match(TokenType.FUN)) return Function("function");
-            if (Match(TokenType.VAR)) return VarDeclaration();
-            return Stmt();
+            try
+            {
+                if (Match(TokenType.FUN)) return Function("function");
+                if (Match(TokenType.VAR)) return VarDeclaration();
+                return Stmt();
+            }
+            catch(ParseError error)
+            {
+                Synchronize();
+                return null;
+            }
         }
 
         Statement VarDeclaration()
@@ -403,8 +412,7 @@ namespace trmpLox
         {
             if (Check(type)) return Advance();
 
-            else Console.WriteLine(message);
-            return new Token(TokenType.EOF, "Error", "Error", -1);
+            throw Error(Peek(), message);
         }
 
         Boolean Check(TokenType type)
@@ -432,6 +440,36 @@ namespace trmpLox
         Token Previous()
         {
             return tokens[cur - 1];
+        }
+
+        private ParseError Error(Token token, string msg)
+        {
+            TrMpLox.Error(token, msg);
+            return new ParseError();
+        }
+
+        void Synchronize()
+        {
+            Advance();
+
+            while (!AtEnd())
+            {
+                if (Previous().type == TokenType.SEMICOLON) return;
+
+                switch (Peek().type)
+                {
+                    case TokenType.FUN:
+                    case TokenType.VAR:
+                    case TokenType.FOR: 
+                    case TokenType.IF:
+                    case TokenType.WHILE:
+                    case TokenType.PRINT:
+                    case TokenType.RETURN: return;
+
+                }
+
+                Advance();
+            }
         }
     }
 }
