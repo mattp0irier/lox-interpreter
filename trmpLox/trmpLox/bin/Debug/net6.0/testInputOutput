@@ -1,0 +1,48 @@
+Count down function: count down from 5.
+5
+4
+3
+2
+1
+0
+Count down function: count down from 10.
+10
+9
+8
+7
+6
+5
+4
+3
+2
+1
+0
+Median function: all results should be 2.
+2
+2
+2
+2
+2
+2
+2
+Power function: printint first 7 powers of 2.
+1
+2
+4
+8
+16
+32
+64
+printTriangle function: printing triangles with various characters.
+*
+* *
+* * *
+* * * *
+:/
+:/ :/
+:/ :/ :/
+:/ :/ :/ :/
+>
+> >
+> > >
+> > > >

@@ -41,7 +41,9 @@ fun printTriangle(char, len) {
     }
 }
 
+print "Count down function: count down from 5.";
 countDown(5);
+print "Count down function: count down from 10.";
 countDown(10);
 
 print "Median function: all results should be 2.";

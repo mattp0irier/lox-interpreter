@@ -1,0 +1,66 @@
+Testing basic things!
+MATH OPS
+2 + 3 = (expected 5)
+5
+4 - 3 = (expected 1)
+1
+4 * 3 = (expected 12)
+12
+6 / 3 = (expected 2)
+2
+negatives
+-2 + -3 = (expected -5)
+-5
+4 - -3 = (expected 7)
+7
+4 * -3 = (expected -12)
+-12
+-6 / -3 = (expected 2)
+2
+LOGICAL OPS
+3 < 4 = (expected true)
+True
+4 < 3 = (expected false)
+False
+-3 <= 4 = (expected true)
+True
+4 <= 4 = (expected true)
+True
+3 > 4 = (expected false)
+False
+4 > 3 = (expected true)
+True
+3 >= 4 = (expected false)
+False
+4 >= 4 = (expected true)
+True
+4 == 4 = (expected true)
+True
+3 == 4 = (expected false)
+False
+-3 == -3 = (expected true)
+True
+-3 != -3 = (expected false)
+False
+-3 != 4 = (expected true)
+True
+
+CONTROL FLOW
+basic if: expected 3
+3
+else: expected 3
+3
+elseif: expected 3
+3
+while loop: expected 5
+5
+for loop: expected 0 1 2 3 4
+0
+1
+2
+3
+4
+
+FUNCTIONS
+expected -4.5
+-4.5
