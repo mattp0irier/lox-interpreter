@@ -24,6 +24,6 @@ Several tests were run on the interpreter in order to verify the interpreter was
 
 The outputs of our tests are stored in the files named `testNameOutput`.
 
---
+---
 ## Limitations
 Our project does not implement classes or any sort of inheritance that comes with it. (Chapters 12 and 13 of *Crafting Interpreters*.)
