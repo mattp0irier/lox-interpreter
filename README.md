@@ -19,8 +19,8 @@ To run with an input file:
 ## Test Cases and Output
 Several tests were run on the interpreter in order to verify the interpreter was working. Included test files are:
 
-- simpleStuff: Basic tests of all operations and functions; expected value for each result is printed
-- testInput: Creates a few functions and tests various operations using them
+- simpleStuff.lox: Basic tests of all operations and functions; expected value for each result is printed
+- testInput.lox: Creates a few functions and tests various operations using them
 
 The outputs of our tests are stored in the files named `testNameOutput`.
 
