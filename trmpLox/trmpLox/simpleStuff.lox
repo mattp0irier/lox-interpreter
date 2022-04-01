@@ -1,0 +1,89 @@
+﻿print "Testing basic things!";
+
+print "MATH OPS";
+print ("2 + 3 = (expected 5)");
+print (2 + 3);
+print ("4 - 3 = (expected 1)");
+print (4 - 3);
+print ("4 * 3 = (expected 12)");
+print (4 * 3);
+print ("6 / 3 = (expected 2)");
+print (6 / 3);
+
+print "negatives";
+print ("-2 + -3 = (expected -5)");
+print (-2 + -3);
+print ("4 - -3 = (expected 7)");
+print (4 - -3);
+print ("4 * -3 = (expected -12)");
+print (4 * -3);
+print ("-6 / -3 = (expected 2)");
+print (-6 / -3);
+
+print "LOGICAL OPS";
+print "3 < 4 = (expected true)";
+print (3 < 4);
+print "4 < 3 = (expected false)";
+print (4 < 3);
+print "-3 <= 4 = (expected true)";
+print (-3 <= 4);
+print "4 <= 4 = (expected true)";
+print (4 <= 4);
+print "3 > 4 = (expected false)";
+print (3 > 4);
+print "4 > 3 = (expected true)";
+print (4 > 3);
+print "3 >= 4 = (expected false)";
+print (3 >= 4);
+print "4 >= 4 = (expected true)";
+print (4 >= 4);
+print "4 == 4 = (expected true)";
+print (4 == 4);
+print "3 == 4 = (expected false)";
+print (3 == 4);
+print "-3 == -3 = (expected true)";
+print (-3 == -3);
+print "-3 != -3 = (expected false)";
+print (-3 != -3);
+print "-3 != 4 = (expected true)";
+print (-3 != 4);
+
+print "";
+print "CONTROL FLOW";
+print "basic if: expected 3";
+var a = 4;
+if (a == 4) {
+    print a - 1;
+}
+print "else: expected 3";
+if (a != 4) {
+    print "NO";
+}
+else {
+    print a - 1;
+}
+print "elseif: expected 3";
+if (a != 4) {
+    print "NO";
+}
+else if (a == 4) {
+    print a - 1;
+}
+print "while loop: expected 5";
+var b = 0;
+while (b < 5) {
+    b = b + 1;
+}
+print b;
+print "for loop: expected 0 1 2 3 4";
+for (var c = 0; c < 5; c = c + 1) {
+    print c;
+}
+
+print "";
+print "FUNCTIONS";
+print "expected -4.5";
+fun addOne(a) {
+    print a + 1;
+}
+addOne(-5.5);
