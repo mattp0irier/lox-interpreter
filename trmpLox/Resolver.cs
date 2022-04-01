@@ -263,6 +263,7 @@ namespace trmpLox
 		// Resolve: resolves a statement
 		private void Resolve(Statement stmt)
 		{
+
 			stmt.accept(this);
 		}
 

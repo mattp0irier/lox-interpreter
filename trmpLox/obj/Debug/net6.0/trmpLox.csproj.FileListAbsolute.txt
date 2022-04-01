@@ -1,0 +1,60 @@
+C:/Users/pebz3/Box Sync/Semester 6/CS 403/extraProject/learning/learning/bin/Debug/net6.0/trmpLox.exe
+C:/Users/pebz3/Box Sync/Semester 6/CS 403/extraProject/learning/learning/bin/Debug/net6.0/trmpLox.deps.json
+C:/Users/pebz3/Box Sync/Semester 6/CS 403/extraProject/learning/learning/bin/Debug/net6.0/trmpLox.runtimeconfig.json
+C:/Users/pebz3/Box Sync/Semester 6/CS 403/extraProject/learning/learning/bin/Debug/net6.0/trmpLox.dll
+C:/Users/pebz3/Box Sync/Semester 6/CS 403/extraProject/learning/learning/bin/Debug/net6.0/trmpLox.pdb
+C:/Users/pebz3/Box Sync/Semester 6/CS 403/extraProject/learning/learning/obj/Debug/net6.0/trmpLox.csproj.AssemblyReference.cache
+C:/Users/pebz3/Box Sync/Semester 6/CS 403/extraProject/learning/learning/obj/Debug/net6.0/trmpLox.GeneratedMSBuildEditorConfig.editorconfig
+C:/Users/pebz3/Box Sync/Semester 6/CS 403/extraProject/learning/learning/obj/Debug/net6.0/trmpLox.AssemblyInfoInputs.cache
+C:/Users/pebz3/Box Sync/Semester 6/CS 403/extraProject/learning/learning/obj/Debug/net6.0/trmpLox.AssemblyInfo.cs
+C:/Users/pebz3/Box Sync/Semester 6/CS 403/extraProject/learning/learning/obj/Debug/net6.0/trmpLox.csproj.CoreCompileInputs.cache
+C:/Users/pebz3/Box Sync/Semester 6/CS 403/extraProject/learning/learning/obj/Debug/net6.0/trmpLox.dll
+C:/Users/pebz3/Box Sync/Semester 6/CS 403/extraProject/learning/learning/obj/Debug/net6.0/refint/trmpLox.dll
+C:/Users/pebz3/Box Sync/Semester 6/CS 403/extraProject/learning/learning/obj/Debug/net6.0/trmpLox.pdb
+C:/Users/pebz3/Box Sync/Semester 6/CS 403/extraProject/learning/learning/obj/Debug/net6.0/trmpLox.genruntimeconfig.cache
+C:/Users/pebz3/Box Sync/Semester 6/CS 403/extraProject/learning/learning/obj/Debug/net6.0/ref/trmpLox.dll
+C:/Users/pebz3/Box Sync/Semester 6/CS 403/lox-interpreter/trmpLox/trmpLox/bin/Debug/net6.0/trmpLox.exe
+C:/Users/pebz3/Box Sync/Semester 6/CS 403/lox-interpreter/trmpLox/trmpLox/bin/Debug/net6.0/trmpLox.deps.json
+C:/Users/pebz3/Box Sync/Semester 6/CS 403/lox-interpreter/trmpLox/trmpLox/bin/Debug/net6.0/trmpLox.runtimeconfig.json
+C:/Users/pebz3/Box Sync/Semester 6/CS 403/lox-interpreter/trmpLox/trmpLox/bin/Debug/net6.0/trmpLox.dll
+C:/Users/pebz3/Box Sync/Semester 6/CS 403/lox-interpreter/trmpLox/trmpLox/bin/Debug/net6.0/trmpLox.pdb
+C:/Users/pebz3/Box Sync/Semester 6/CS 403/lox-interpreter/trmpLox/trmpLox/obj/Debug/net6.0/trmpLox.csproj.AssemblyReference.cache
+C:/Users/pebz3/Box Sync/Semester 6/CS 403/lox-interpreter/trmpLox/trmpLox/obj/Debug/net6.0/trmpLox.GeneratedMSBuildEditorConfig.editorconfig
+C:/Users/pebz3/Box Sync/Semester 6/CS 403/lox-interpreter/trmpLox/trmpLox/obj/Debug/net6.0/trmpLox.AssemblyInfoInputs.cache
+C:/Users/pebz3/Box Sync/Semester 6/CS 403/lox-interpreter/trmpLox/trmpLox/obj/Debug/net6.0/trmpLox.AssemblyInfo.cs
+C:/Users/pebz3/Box Sync/Semester 6/CS 403/lox-interpreter/trmpLox/trmpLox/obj/Debug/net6.0/trmpLox.csproj.CoreCompileInputs.cache
+C:/Users/pebz3/Box Sync/Semester 6/CS 403/lox-interpreter/trmpLox/trmpLox/obj/Debug/net6.0/trmpLox.dll
+C:/Users/pebz3/Box Sync/Semester 6/CS 403/lox-interpreter/trmpLox/trmpLox/obj/Debug/net6.0/refint/trmpLox.dll
+C:/Users/pebz3/Box Sync/Semester 6/CS 403/lox-interpreter/trmpLox/trmpLox/obj/Debug/net6.0/trmpLox.pdb
+C:/Users/pebz3/Box Sync/Semester 6/CS 403/lox-interpreter/trmpLox/trmpLox/obj/Debug/net6.0/trmpLox.genruntimeconfig.cache
+C:/Users/pebz3/Box Sync/Semester 6/CS 403/lox-interpreter/trmpLox/trmpLox/obj/Debug/net6.0/ref/trmpLox.dll
+/Users/mattpoirier/Documents/GitHub/lox-interpreter/trmpLox/trmpLox/bin/Debug/net6.0/trmpLox
+/Users/mattpoirier/Documents/GitHub/lox-interpreter/trmpLox/trmpLox/bin/Debug/net6.0/trmpLox.deps.json
+/Users/mattpoirier/Documents/GitHub/lox-interpreter/trmpLox/trmpLox/bin/Debug/net6.0/trmpLox.runtimeconfig.json
+/Users/mattpoirier/Documents/GitHub/lox-interpreter/trmpLox/trmpLox/bin/Debug/net6.0/trmpLox.dll
+/Users/mattpoirier/Documents/GitHub/lox-interpreter/trmpLox/trmpLox/bin/Debug/net6.0/trmpLox.pdb
+/Users/mattpoirier/Documents/GitHub/lox-interpreter/trmpLox/trmpLox/obj/Debug/net6.0/trmpLox.csproj.AssemblyReference.cache
+/Users/mattpoirier/Documents/GitHub/lox-interpreter/trmpLox/trmpLox/obj/Debug/net6.0/trmpLox.GeneratedMSBuildEditorConfig.editorconfig
+/Users/mattpoirier/Documents/GitHub/lox-interpreter/trmpLox/trmpLox/obj/Debug/net6.0/trmpLox.AssemblyInfoInputs.cache
+/Users/mattpoirier/Documents/GitHub/lox-interpreter/trmpLox/trmpLox/obj/Debug/net6.0/trmpLox.AssemblyInfo.cs
+/Users/mattpoirier/Documents/GitHub/lox-interpreter/trmpLox/trmpLox/obj/Debug/net6.0/trmpLox.csproj.CoreCompileInputs.cache
+/Users/mattpoirier/Documents/GitHub/lox-interpreter/trmpLox/trmpLox/obj/Debug/net6.0/trmpLox.dll
+/Users/mattpoirier/Documents/GitHub/lox-interpreter/trmpLox/trmpLox/obj/Debug/net6.0/refint/trmpLox.dll
+/Users/mattpoirier/Documents/GitHub/lox-interpreter/trmpLox/trmpLox/obj/Debug/net6.0/trmpLox.pdb
+/Users/mattpoirier/Documents/GitHub/lox-interpreter/trmpLox/trmpLox/obj/Debug/net6.0/trmpLox.genruntimeconfig.cache
+/Users/mattpoirier/Documents/GitHub/lox-interpreter/trmpLox/trmpLox/obj/Debug/net6.0/ref/trmpLox.dll
+/Users/mattpoirier/Documents/GitHub/lox-interpreter/trmpLox/bin/Debug/net6.0/trmpLox
+/Users/mattpoirier/Documents/GitHub/lox-interpreter/trmpLox/bin/Debug/net6.0/trmpLox.deps.json
+/Users/mattpoirier/Documents/GitHub/lox-interpreter/trmpLox/bin/Debug/net6.0/trmpLox.runtimeconfig.json
+/Users/mattpoirier/Documents/GitHub/lox-interpreter/trmpLox/bin/Debug/net6.0/trmpLox.dll
+/Users/mattpoirier/Documents/GitHub/lox-interpreter/trmpLox/bin/Debug/net6.0/trmpLox.pdb
+/Users/mattpoirier/Documents/GitHub/lox-interpreter/trmpLox/obj/Debug/net6.0/trmpLox.csproj.AssemblyReference.cache
+/Users/mattpoirier/Documents/GitHub/lox-interpreter/trmpLox/obj/Debug/net6.0/trmpLox.GeneratedMSBuildEditorConfig.editorconfig
+/Users/mattpoirier/Documents/GitHub/lox-interpreter/trmpLox/obj/Debug/net6.0/trmpLox.AssemblyInfoInputs.cache
+/Users/mattpoirier/Documents/GitHub/lox-interpreter/trmpLox/obj/Debug/net6.0/trmpLox.AssemblyInfo.cs
+/Users/mattpoirier/Documents/GitHub/lox-interpreter/trmpLox/obj/Debug/net6.0/trmpLox.csproj.CoreCompileInputs.cache
+/Users/mattpoirier/Documents/GitHub/lox-interpreter/trmpLox/obj/Debug/net6.0/trmpLox.dll
+/Users/mattpoirier/Documents/GitHub/lox-interpreter/trmpLox/obj/Debug/net6.0/refint/trmpLox.dll
+/Users/mattpoirier/Documents/GitHub/lox-interpreter/trmpLox/obj/Debug/net6.0/trmpLox.pdb
+/Users/mattpoirier/Documents/GitHub/lox-interpreter/trmpLox/obj/Debug/net6.0/trmpLox.genruntimeconfig.cache
+/Users/mattpoirier/Documents/GitHub/lox-interpreter/trmpLox/obj/Debug/net6.0/ref/trmpLox.dll

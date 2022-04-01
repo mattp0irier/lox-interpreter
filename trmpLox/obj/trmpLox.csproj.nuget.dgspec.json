@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\pebz3\\Box Sync\\Semester 6\\CS 403\\lox-interpreter\\trmpLox\\trmpLox\\trmpLox.csproj": {}
+    "/Users/mattpoirier/Documents/GitHub/lox-interpreter/trmpLox/trmpLox.csproj": {}
   },
   "projects": {
-    "C:\\Users\\pebz3\\Box Sync\\Semester 6\\CS 403\\lox-interpreter\\trmpLox\\trmpLox\\trmpLox.csproj": {
+    "/Users/mattpoirier/Documents/GitHub/lox-interpreter/trmpLox/trmpLox.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\pebz3\\Box Sync\\Semester 6\\CS 403\\lox-interpreter\\trmpLox\\trmpLox\\trmpLox.csproj",
+        "projectUniqueName": "/Users/mattpoirier/Documents/GitHub/lox-interpreter/trmpLox/trmpLox.csproj",
         "projectName": "trmpLox",
-        "projectPath": "C:\\Users\\pebz3\\Box Sync\\Semester 6\\CS 403\\lox-interpreter\\trmpLox\\trmpLox\\trmpLox.csproj",
-        "packagesPath": "C:\\Users\\pebz3\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\pebz3\\Box Sync\\Semester 6\\CS 403\\lox-interpreter\\trmpLox\\trmpLox\\obj\\",
+        "projectPath": "/Users/mattpoirier/Documents/GitHub/lox-interpreter/trmpLox/trmpLox.csproj",
+        "packagesPath": "/Users/mattpoirier/.nuget/packages/",
+        "outputPath": "/Users/mattpoirier/Documents/GitHub/lox-interpreter/trmpLox/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\pebz3\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/mattpoirier/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -54,7 +52,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.201/RuntimeIdentifierGraph.json"
         }
       }
     }
