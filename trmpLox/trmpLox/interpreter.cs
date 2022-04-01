@@ -287,10 +287,10 @@ namespace trmpLox
             return function.Call(this, arguments);
         }
 
-        public object visitGetExpr(Get expr)
-        {
-            throw new NotImplementedException();
-        }
+        //public object visitGetExpr(Get expr)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         // for grouping expression, simply evaluate the expression inside
         public object visitGroupingExpr(Grouping expr)
@@ -326,15 +326,15 @@ namespace trmpLox
             return evaluate(expr.right);
         }
 
-        public object visitSetExpr(Set expr)
-        {
-            throw new NotImplementedException();
-        }
+        //public object visitSetExpr(Set expr)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public object visitThisExpr(This expr)
-        {
-            throw new NotImplementedException();
-        }
+        //public object visitThisExpr(This expr)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         // visiting a unary expression
         public object visitUnaryExpr(Unary expr)

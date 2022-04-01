@@ -7,11 +7,14 @@ namespace trmpLox
 {
     class TrMpLox
     {
+        // flags for errors
         public static bool hadError = false;
         public static bool hadRunTimeError = false;
+
+        // Main: takes file or prompts for input
         static void Main(string[] args)
         {
-            if (args.Length > 1)
+            if (args.Length > 1) // invalid args
             {
                 Console.WriteLine("Usage: lox-interpreter [filename]");
                 return;
@@ -26,6 +29,7 @@ namespace trmpLox
             }
         }
 
+        // RunPrompt: prompt user for input until blank entered
         static void RunPrompt()
         {
             Interpreter interpreter = new Interpreter();
@@ -34,53 +38,52 @@ namespace trmpLox
             {
                 Console.Write("> ");
                 curLine = Console.ReadLine();
-                if (curLine.Length == 0) break;
-                Run(curLine, interpreter);
+                if (curLine.Length == 0) break; // break if no input
+                Run(curLine, interpreter); // run input
             }
         }
 
+        // RunFile: pass input file to run function
         static void RunFile(string filename)
         {
             string input = File.ReadAllText(filename);
             Run(input, null);
 
+            // exit if errors
             if (hadError) System.Environment.Exit(65);
             if (hadRunTimeError) System.Environment.Exit(70);
         }
 
+        // Run: execute string input
         static void Run(string line, Interpreter? interpreter)
         {
+            // Scan
             Scanner scanner = new(line);
             List<Token> tokens = scanner.scanTokens();
+
+            // Parse
             Parser parser = new(tokens);
             List<Statement> stmts = parser.Parse();
+
             if (interpreter == null) interpreter = new Interpreter();
 
-
-            //Console.WriteLine("Didn't Die");
-
-
-            //foreach (Token cur in tokens)
-            //{
-            //Console.WriteLine("there is a token here");
-            //Console.WriteLine(cur.toString());
-            //}
-
-            // Console.WriteLine();
-            // Console.WriteLine(expr);
-            // Console.WriteLine();
+            // Resolve
             Resolver resolver = new Resolver(interpreter);
             resolver.Resolve(stmts);
 
-            if (hadError) return;
+            if (hadError) return; // if error, break
 
+            // Interpret
             interpreter.interpret(stmts);
         }
+
+        // Error: take line number and error message and report error
         public static void Error(int line, string msg)
         {
             Report(line, "", msg);
         }
 
+        // Error: take token and error message and report error
         public static void Error(Token token, string msg)
         {
             if (token.type == TokenType.EOF)
@@ -91,12 +94,14 @@ namespace trmpLox
             }
         }
 
+        // RuntimeError: write runtime error and line number to error console
         public static void RuntimeError(runtimeError error)
         {
             Console.Error.WriteLine(error.Message + "\n[line: " + error.token.line + "]");
             hadRunTimeError = true;
         }
 
+        // Report: write error and line number to error console
         public static void Report(int line, string where, string msg)
         {
             Console.Error.WriteLine("[line " + line + "] error" + where + ": " + msg);

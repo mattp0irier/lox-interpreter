@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 namespace trmpLox
 {
+    // TokenType: enum for token types
     public enum TokenType
     {
         // One-chars
@@ -26,6 +27,7 @@ namespace trmpLox
         EOF
     };
 
+    // Token class
     public class Token
     {
         public TokenType type;
@@ -42,17 +44,20 @@ namespace trmpLox
             this.line = line;
         }
 
+        // GetType: return TokenType
         public new TokenType GetType()
         {
             return this.type;
         }
 
-        public new Object GetLiteral()
+        // GetLiteral: return literal
+        public new object GetLiteral()
         {
-            return this.literal;
+            return literal;
         }
 
-        public String toString()
+        // toString: return string with type and lexeme and literal
+        public string toString()
         {
             return type + " " + lexeme + " " + literal;
         }
