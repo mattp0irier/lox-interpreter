@@ -1,0 +1,69 @@
+// countDown: given a number x, decrements from x to 0, outputting each number
+// along the way.
+fun countDown(a) {
+    if (a == 0) {
+        print 0;
+        return 0;
+    }
+    else {
+        print a;
+        return countDown(a - 1);
+    }
+}
+
+// median: returns the median of 3 numbers.
+fun median(a, b, c) {
+	if (a > b) return median(b, a, c);
+	if (b > c) return median(a, c, b);
+	return b;
+}
+
+// pow: raises a number to a power.
+fun pow(a, b) {
+    var power = b;
+    var product = 1;
+    while (power > 0){
+        product = product * a;
+        power = power - 1;
+    }
+    return product;
+}
+
+// printTriangle: given a string/character and a base length, prints a right triangle made up of that character
+fun printTriangle(char, len) {
+    var string;
+    for (var j = 0; j < len; j = j + 1){
+        string = char;
+        for (var i = 0; i < j; i = i + 1) {
+            string = string + " " + char;
+        }
+        print string;
+    }
+}
+
+countDown(5);
+countDown(10);
+
+print "Median function: all results should be 2.";
+print median(1, 2, 3);
+print median(2, 1, 3);
+print median(1, 3, 2);
+print median(2, 2, 3);
+print median(3, 2, 2);
+print median(1, 2, 2);
+print median(2, 2, 1);
+
+print "Power function: printint first 7 powers of 2.";
+print pow(2, 0);
+print pow(2, 1);
+print pow(2, 2);
+print pow(2, 3);
+print pow(2, 4);
+print pow(2, 5);
+print pow(2, 6);
+
+print "printTriangle function: printing triangles with various characters.";
+printTriangle("*", 4);
+printTriangle(":/", 4);
+printTriangle("this should not print", 0);
+printTriangle(">", 4);
