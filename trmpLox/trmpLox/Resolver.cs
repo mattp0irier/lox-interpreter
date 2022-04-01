@@ -168,7 +168,7 @@ namespace trmpLox
 			foreach (Token parameter in fun.parameters)
 			{
 				Declare(parameter);
-				Console.WriteLine("declared " + parameter.lexeme);
+				//Console.WriteLine("declared " + parameter.lexeme);
 				Define(parameter);
 			}
 			Resolve(fun.body);
